@@ -12,15 +12,12 @@ Unlike a monolithic application, this system is decoupled into **four distinct m
 ## 🏗 System Architecture
 The system operates on a pipeline architecture:
 
-1.  **User Interface:** User defines crawl targets and views results.
-2.  **Client-Side Backend:** Can be used to use the client machine as the host for carrying out the crawl instead of a remote server.
-3.  **Core Backend:** Manages the task queue, database operations, and orchestration.
-4.  **Crawler Engine:** The isolated Python worker that executes the actual scraping logic.
+1.  **[**WebCrawler_frontend**](https://github.com/Fanboyingeneral/WebCrawler_frontend):** User defines crawl targets and views results.
+2.  **[**WebCrawler_client_side_backend**](https://github.com/Fanboyingeneral/WebCrawler_client_side_backend):** Can be used to use the client machine as the host for carrying out the crawl instead of a remote server.
+3.  **[**WebCrawler_backend**](https://github.com/Fanboyingeneral/WebCrawler_backend):** Manages the task queue, database operations, and orchestration.
+4.  **[**WebCrawler_crawler_engine**](https://github.com/Fanboyingeneral/WebCrawler_crawler_engine):** The isolated Python worker that executes the actual scraping logic.
 
-[**WebCrawler_backend**](https://github.com/Fanboyingeneral/WebCrawler_backend)
-[**WebCrawler_crawler_engine**](https://github.com/Fanboyingeneral/WebCrawler_crawler_engine)
-[**WebCrawler_client_side_backend**](https://github.com/Fanboyingeneral/WebCrawler_client_side_backend)
-[**WebCrawler_frontend**](https://github.com/Fanboyingeneral/WebCrawler_frontend)
+
 
 ## 🏗 System Architecture
 The system employs a **Hybrid Execution Model**, allowing crawl jobs to be executed either remotely on the server or locally on the client's machine. This is handled by the specialized `Client Side Backend`.
