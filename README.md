@@ -17,37 +17,13 @@ The system operates on a pipeline architecture:
 3.  **Core Backend:** Manages the task queue, database operations, and orchestration.
 4.  **Crawler Engine:** The isolated Python worker that executes the actual scraping logic.
 
+[**WebCrawler_backend**](https://github.com/Fanboyingeneral/WebCrawler_backend)
+[**WebCrawler_crawler_engine**](https://github.com/Fanboyingeneral/WebCrawler_crawler_engine)
+[**WebCrawler_client_side_backend**](https://github.com/Fanboyingeneral/WebCrawler_client_side_backend)
+[**WebCrawler_frontend**](https://github.com/Fanboyingeneral/WebCrawler_frontend)
+
 ## 🏗 System Architecture
 The system employs a **Hybrid Execution Model**, allowing crawl jobs to be executed either remotely on the server or locally on the client's machine. This is handled by the specialized `Client Side Backend`.
 
 * **Remote Mode:** Standard server-side crawling using the distributed Python engine.
 * **Local/Client Mode:** The `Client Side Backend` turns the user's machine into a temporary crawl node, bypassing server-side IP restrictions and distributing the network load.
-
-```mermaid
-graph TD
-    subgraph "Client Machine (Local Environment)"
-        UI[Frontend UI]
-        CSB[Client Side Backend]
-    end
-
-    subgraph "Remote Server (Cloud)"
-        API[Core Backend API]
-        DB[(Database)]
-        Worker[Crawler Engine]
-    end
-
-    Target((Target Website))
-
-    %% Flows
-    UI -->|Mode: Local Crawl| CSB
-    UI -->|Mode: Remote Crawl| API
-    
-    %% Execution Paths
-    CSB -->|Executes Request| Target
-    API -->|Dispatches Job| Worker
-    Worker -->|Executes Request| Target
-
-    %% Data Sync
-    CSB -.->|Sync Results| API
-    Worker -->|Store Data| DB
-    API -->|Read/Write| DB
